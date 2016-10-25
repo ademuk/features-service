@@ -19,13 +19,11 @@ from django.contrib import admin
 from rest_framework_jwt.views import obtain_jwt_token
 
 from .features import urls as features_urls
-from .features.views import index
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^api/', include(features_urls)),
     url(r'^api/sessions/', obtain_jwt_token),
-    url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
-    url(r'^.*$', index)
+    url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework'))
 ]
 

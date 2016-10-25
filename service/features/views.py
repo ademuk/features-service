@@ -35,10 +35,3 @@ class FeatureDetailView(generics.RetrieveAPIView):
     def get_queryset(self):
         user = self.request.user
         return Feature.objects.filter(project__in=user.projects.all())
-
-
-from django.shortcuts import render
-
-def index(request):
-
-    return render(request, 'index.html')
