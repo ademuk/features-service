@@ -1,0 +1,10 @@
+Django==1.10.2
+djangorestframework==3.4.7
+djangorestframework-jwt==1.8.0
+django-cors-headers==1.2.1
+dj-database-url==0.4.1
+psycopg2==2.6.2
+channels==0.17.2
+asgi-redis==0.14.1
+celery==3.1.24
+whitenoise==3.2.2
