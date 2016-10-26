@@ -128,7 +128,8 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 CORS_ORIGIN_WHITELIST = (
     'localhost:3000',
-    'features.dokku.me'
+    'features.dokku.me',
+    'features.appyharry.com'
 )
 
 REST_FRAMEWORK = {
