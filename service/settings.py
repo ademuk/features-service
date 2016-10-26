@@ -137,7 +137,7 @@ REST_FRAMEWORK = {
         'rest_framework.permissions.IsAuthenticated',
     ),
     'DEFAULT_AUTHENTICATION_CLASSES': (
-        'features.authentication.JSONWebTokenCsrfExemptAuthentication',
+        'service.features.authentication.JSONWebTokenCsrfExemptAuthentication',
     ),
 }
 
