@@ -26,6 +26,7 @@ SECRET_KEY = os.getenv('SECRET_KEY')
 DEBUG = os.getenv('DEBUG', False)
 
 ALLOWED_HOSTS = [
+    'features-service.dokku.me',
     'features-service.appyharry.com'
 ]
 
