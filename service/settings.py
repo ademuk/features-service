@@ -25,11 +25,7 @@ SECRET_KEY = os.getenv('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.getenv('DEBUG', False)
 
-ALLOWED_HOSTS = [
-    '127.0.0.1',
-    'features-service.dokku.me',
-    'features-service.appyharry.com'
-]
+ALLOWED_HOSTS = os.getenv('ALLOWED_HOST', '').split(',')
 
 
 # Application definition
@@ -131,9 +127,7 @@ STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 CORS_ORIGIN_WHITELIST = (
-    'localhost:3000',
-    'features.dokku.me',
-    'features.appyharry.com'
+    os.getenv('CORS_ORIGIN_WHITELIST')
 )
 
 REST_FRAMEWORK = {
