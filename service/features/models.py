@@ -39,12 +39,15 @@ class Project(models.Model):
         self.save()
 
     def create_keys(self):
-        (private_key, public_key) = create_keys()
+        private_key, public_key = create_keys()
 
         self.private_key = private_key
         self.public_key = public_key
 
         self.save()
+
+    def is_repo_ssh(self):
+        return not self.repo_url.startswith('http')
 
     def set_status(self, status):
         self.status = status
