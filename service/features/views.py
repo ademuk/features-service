@@ -17,7 +17,7 @@ class ProjectViewSet(viewsets.ModelViewSet):
         return user.projects.all()
 
     def perform_create(self, serializer):
-        serializer.save(users=[self.request.user], status=Project.STATUS_ADDING).status
+        serializer.save(users=[self.request.user]).status
 
     @detail_route()
     def features(self, request, pk=None):

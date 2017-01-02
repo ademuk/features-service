@@ -3,6 +3,7 @@ djangorestframework==3.4.7
 djangorestframework-jwt==1.8.0
 django-cors-headers==1.2.1
 dj-database-url==0.4.1
+pycryptodome==3.4.3
 psycopg2==2.6.2
 channels==0.17.2
 asgi-redis==0.14.1

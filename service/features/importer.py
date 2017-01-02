@@ -14,7 +14,7 @@ class GitFeatureImporter:
 
     def run(self):
         repo_path = 'repo-project-%d' % self.project.id
-        feature_paths = self.get_feature_paths(repo_path)
+        feature_paths = self._get_feature_paths(repo_path)
         features_root_path = os.path.commonprefix(feature_paths)
 
         for path in feature_paths:
@@ -32,7 +32,7 @@ class GitFeatureImporter:
 
         return features_root_path.replace(repo_path, '')
 
-    def get_feature_paths(self, repo_path):
+    def _get_feature_paths(self, repo_path):
         git("clone", self.project.repo_url, repo_path)
 
         paths = []

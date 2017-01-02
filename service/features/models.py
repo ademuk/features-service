@@ -6,6 +6,7 @@ from django.db import models
 from channels import Group
 
 from .importer import GitFeatureImporter
+from .keys import create_keys
 
 
 class Project(models.Model):
@@ -23,6 +24,8 @@ class Project(models.Model):
     users = models.ManyToManyField('auth.User', related_name='projects', blank=True)
     repo_url = models.CharField(max_length=255, blank=True)
     features_path = models.CharField(max_length=255, blank=True)
+    private_key = models.TextField(blank=True)
+    public_key = models.TextField(blank=True)
 
     def import_features_from_git(self):
         importer = GitFeatureImporter(self)
@@ -32,6 +35,14 @@ class Project(models.Model):
             self.set_status(Project.STATUS_ADDED)
         except:
             self.set_status(Project.STATUS_ADDING_ERROR)
+
+        self.save()
+
+    def create_keys(self):
+        (private_key, public_key) = create_keys()
+
+        self.private_key = private_key
+        self.public_key = public_key
 
         self.save()
 
