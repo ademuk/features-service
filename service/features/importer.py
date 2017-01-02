@@ -35,7 +35,7 @@ class GitFeatureImporter:
         return features_root_path.replace(repo_path, '')
 
     def _get_feature_paths(self, repo_path):
-        if self.project.is_repo_ssh():
+        if self.project.is_ssh_repo:
             fd, key_path = tempfile.mkstemp()
 
             file = os.fdopen(fd, 'w')

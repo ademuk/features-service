@@ -46,7 +46,8 @@ class Project(models.Model):
 
         self.save()
 
-    def is_repo_ssh(self):
+    @property
+    def is_ssh_repo(self):
         return not self.repo_url.startswith('http')
 
     def set_status(self, status):
