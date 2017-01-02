@@ -9,5 +9,3 @@ from service.features.tasks import create_keys_for_project, import_features_from
 def handle_new_project(sender, instance, created, **kwargs):
     if created and instance.repo_url:
         create_keys_for_project.delay(instance.id)
-        instance.set_status(Project.STATUS_ADDING)
-        import_features_from_git_repo.delay(instance.id)
