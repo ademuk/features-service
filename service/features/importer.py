@@ -1,6 +1,5 @@
 import subprocess
 import os
-from os import chmod
 import shutil
 import tempfile
 
@@ -41,10 +40,10 @@ class GitFeatureImporter:
             file = os.fdopen(fd, 'w')
             file.write(self.project.private_key)
             file.close()
-            chmod(key_path, 0o600)
+            os.chmod(key_path, 0o600)
 
             env = os.environ.copy()
-            env["GIT_SSH_COMMAND"] = "ssh -o StrictHostKeyChecking=no -i %s" % key_path
+            env["GIT_SSH_COMMAND"] = "ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no -i %s" % key_path
             cmd = ["git", "clone", self.project.repo_url, repo_path]
 
             p = subprocess.Popen(cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE, env=env)
