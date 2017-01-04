@@ -10,39 +10,37 @@ from .keys import create_keys
 
 
 class Project(models.Model):
-    STATUS_ADDING = 'adding'
-    STATUS_ADDED = 'added'
-    STATUS_ADDING_ERROR = 'adding_error'
+    STATUS_CREATED = 'created'
+    STATUS_IMPORTING = 'importing'
+    STATUS_IMPORTED = 'imported'
+    STATUS_IMPORT_ERROR = 'import_error'
     STATUS_CHOICES = (
-        (STATUS_ADDING, 'Adding'),
-        (STATUS_ADDED, 'Added'),
-        (STATUS_ADDING_ERROR, 'Adding Error')
+        (STATUS_IMPORTING, 'Importing'),
+        (STATUS_IMPORTED, 'Imported'),
+        (STATUS_IMPORT_ERROR, 'Import Error')
     )
 
     name = models.CharField(max_length=255)
-    status = models.CharField(max_length=100, choices=STATUS_CHOICES, default=STATUS_ADDED)
+    status = models.CharField(max_length=100, choices=STATUS_CHOICES, default=STATUS_CREATED)
     users = models.ManyToManyField('auth.User', related_name='projects', blank=True)
     repo_url = models.CharField(max_length=255, blank=True)
     features_path = models.CharField(max_length=255, blank=True)
     private_key = models.TextField(blank=True)
     public_key = models.TextField(blank=True)
 
-    def import_features_from_git(self):
+    def import_features_from_repo(self):
         importer = GitFeatureImporter(self)
 
         try:
             self.features_path = importer.run()
-            self.set_status(Project.STATUS_ADDED)
+            self.set_status(Project.STATUS_IMPORTED)
         except:
-            self.set_status(Project.STATUS_ADDING_ERROR)
+            self.set_status(Project.STATUS_IMPORT_ERROR)
 
         self.save()
 
-    def create_keys(self):
-        private_key, public_key = create_keys()
-
-        self.private_key = private_key
-        self.public_key = public_key
+    def generate_keys(self):
+        self.private_key, self.public_key = create_keys()
 
         self.save()
 
