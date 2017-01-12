@@ -58,7 +58,7 @@ class GitFeatureImporter:
             # if stderr:
             #     print(stderr)
 
-            p2 = subprocess.Popen('cat %s' % key_path, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+            p2 = subprocess.Popen(['cat', key_path], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
 
             stdout, stderr = p2.communicate()
 
