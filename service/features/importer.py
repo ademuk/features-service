@@ -44,10 +44,10 @@ class GitFeatureImporter:
 
             env = os.environ.copy()
 
-            SITE_ROOT = os.path.dirname(os.path.realpath(__file__))
+            app_root = os.path.dirname(os.path.realpath(__file__))
 
-            env["GIT_SSH"] = os.path.join(SITE_ROOT, 'bin', 'ssh.sh')
-            env["PKEY"] = key_path
+            env["GIT_SSH"] = os.path.join(app_root, 'bin', 'ssh.sh')
+            env["PRIVATE_KEY"] = key_path
             cmd = ["git", "clone", self.project.repo_url, repo_path]
 
             p = subprocess.Popen(cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE, env=env)

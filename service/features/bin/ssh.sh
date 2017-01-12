@@ -1,7 +1,3 @@
 #!/bin/sh
 
-if [ -z "$PKEY" ]; then
-    ssh "$@"
-else
-    ssh -i "$PKEY" -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no "$@"
-fi
+ssh -i "$PRIVATE_KEY" -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no "$@"
