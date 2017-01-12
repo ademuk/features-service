@@ -50,6 +50,8 @@ class GitFeatureImporter:
 
             stdout, stderr = p.communicate()
 
+            print(env["GIT_SSH_COMMAND"])
+            
             if stdout:
                 print(stdout)
             if stderr:
