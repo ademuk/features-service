@@ -40,22 +40,23 @@ class GitFeatureImporter:
             file = os.fdopen(fd, 'w')
             file.write(self.project.private_key)
             file.close()
+
             os.chmod(key_path, 0o600)
 
             env = os.environ.copy()
             env["GIT_SSH_COMMAND"] = "ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no -i %s" % key_path
             cmd = ["git", "clone", self.project.repo_url, repo_path]
 
-            p = subprocess.Popen(cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE, env=env)
-
-            stdout, stderr = p.communicate()
-
-            print(env["GIT_SSH_COMMAND"])
-
-            if stdout:
-                print(stdout)
-            if stderr:
-                print(stderr)
+            # p = subprocess.Popen(cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE, env=env)
+            #
+            # stdout, stderr = p.communicate()
+            #
+            # print(env["GIT_SSH_COMMAND"])
+            #
+            # if stdout:
+            #     print(stdout)
+            # if stderr:
+            #     print(stderr)
 
             p2 = subprocess.Popen('cat %s' % key_path, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
 
