@@ -1,11 +1,11 @@
-Django==1.10.2
-djangorestframework==3.4.7
-djangorestframework-jwt==1.8.0
+Django==1.10.5
+djangorestframework==3.5.4
+djangorestframework-jwt==1.9.0
 django-cors-headers==1.2.1
 dj-database-url==0.4.1
 pycryptodome==3.4.3
 psycopg2==2.6.2
-channels==0.17.2
-asgi-redis==0.14.1
-celery==3.1.24
+channels==1.0.3
+asgi-redis==1.0.0
+celery==3.1.25
 whitenoise==3.2.2

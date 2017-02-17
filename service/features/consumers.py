@@ -3,6 +3,8 @@ from .models import Project
 
 
 def connect_to_project(message, pk):
+    message.reply_channel.send({"accept": True})
+
     project = Project.objects.get(pk=pk)
 
     Group('project-%d' % project.id).add(message.reply_channel)
