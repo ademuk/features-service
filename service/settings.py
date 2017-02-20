@@ -142,7 +142,8 @@ REST_FRAMEWORK = {
 import datetime
 
 JWT_AUTH = {
-    'JWT_EXPIRATION_DELTA': datetime.timedelta(weeks=1)
+    'JWT_EXPIRATION_DELTA': datetime.timedelta(weeks=1),
+    'JWT_PAYLOAD_HANDLER': 'service.authentication.jwt_payload_handler'
 }
 
 REDIS_URL = os.getenv('REDIS_URL')
