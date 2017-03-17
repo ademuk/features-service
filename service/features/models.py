@@ -33,11 +33,33 @@ class Project(models.Model):
 
         try:
             self.features_path = importer.run()
+
             self.set_status(Project.STATUS_IMPORTED)
         except:
             self.set_status(Project.STATUS_IMPORT_ERROR)
 
         self.save()
+
+    def update_features(self, features):
+        existing_features = self.features.all()
+        for feature in features:
+            feature_name, feature_body = feature
+            existing_feature = next((f for f in existing_features if f.name == feature_name), None)
+            if existing_feature:
+                existing_feature.name = feature_name
+                existing_feature.body = feature_body
+                existing_feature.save()
+            else:
+                self.features.create(
+                    project=self,
+                    name=feature_name,
+                    body=feature_body
+                )
+        for existing_feature in existing_features:
+            feature = next((f for f in features if f[0] == existing_feature.name), None)
+            if not feature:
+                existing_feature.delete()
+
 
     def generate_keys(self):
         self.private_key, self.public_key = create_keys()

@@ -15,25 +15,18 @@ class GitFeatureImporter:
 
     def run(self):
         repo_path = 'repo-project-%d' % self.project.id
-        feature_paths = self._get_feature_paths(repo_path)
+        feature_paths = self._find_feature_paths(repo_path)
         features_root_path = os.path.commonprefix(feature_paths)
+        features_path = features_root_path.replace(repo_path, '')
 
-        for path in feature_paths:
-            feature_name = path.replace(features_root_path, '')
-            feature_file = open(path, 'r')
-            feature_body = feature_file.read()
-
-            self.project.features.create(
-                project=self.project,
-                name=feature_name,
-                body=feature_body
-            )
+        features = self._open_features(feature_paths, features_root_path)
+        self.project.update_features(features)
 
         shutil.rmtree(repo_path)
 
-        return features_root_path.replace(repo_path, '')
+        return features_path
 
-    def _get_feature_paths(self, repo_path):
+    def _find_feature_paths(self, repo_path):
         if self.project.is_ssh_repo:
             fd, key_path = tempfile.mkstemp()
 
@@ -68,3 +61,12 @@ class GitFeatureImporter:
                 if file.endswith(".feature"):
                     paths.append(os.path.join(root, file))
         return paths
+
+    def _open_features(self, paths, root_path):
+        features = []
+        for path in paths:
+            name = path.replace(root_path, '')
+            with open(path, 'r') as feature_file:
+                body = feature_file.read()
+            features.append((name, body))
+        return features
