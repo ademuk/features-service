@@ -60,7 +60,6 @@ class Project(models.Model):
             if not feature:
                 existing_feature.delete()
 
-
     def generate_keys(self):
         self.private_key, self.public_key = create_keys()
 
