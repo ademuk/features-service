@@ -1,5 +1,6 @@
 from __future__ import unicode_literals
 import json
+import uuid
 
 from django.db import models
 
@@ -20,6 +21,7 @@ class Project(models.Model):
         (STATUS_IMPORT_ERROR, 'Import Error')
     )
 
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     name = models.CharField(max_length=255)
     status = models.CharField(max_length=100, choices=STATUS_CHOICES, default=STATUS_CREATED)
     users = models.ManyToManyField('auth.User', related_name='projects', blank=True)
@@ -83,6 +85,7 @@ class Project(models.Model):
 
 
 class Feature(models.Model):
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     project = models.ForeignKey(Project, related_name='features')
     name = models.CharField(max_length=255)
     body = models.TextField(blank=True)

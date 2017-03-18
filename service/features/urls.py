@@ -8,5 +8,5 @@ router.register(r'projects', ProjectViewSet)
 
 urlpatterns = [
     url(r'^', include(router.urls)),
-    url(r'^features/(?P<pk>[0-9]+)/?$', FeatureDetailView.as_view(), name='feature-detail')
+    url(r'^features/(?P<id>[0-9a-f-]+)/?$', FeatureDetailView.as_view(), name='feature-detail')
 ]

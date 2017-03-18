@@ -7,7 +7,7 @@ from .models import Project
 
 @shared_task
 def import_features_from_repo(project_id):
-    project = Project.objects.get(pk=project_id)
+    project = Project.objects.get(id=project_id)
 
     print('%s - Importing features from: %s' % (project.name, project.repo_url))
 

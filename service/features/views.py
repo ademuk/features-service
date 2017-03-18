@@ -36,6 +36,7 @@ class ProjectViewSet(viewsets.ModelViewSet):
 
 
 class FeatureDetailView(generics.RetrieveAPIView):
+    lookup_field = 'id'
     queryset = Feature.objects.all()
     serializer_class = FeatureSerializer
     permission_classes = (IsAuthenticated,)
