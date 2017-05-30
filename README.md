@@ -1,5 +1,8 @@
 # Features (service)
 
+* See the [Features client](https://github.com/ademuk/features) for more info.
+* Created by [Adem Gaygusuz](https://adem.io).
+
 ## Technologies
 * Python 3.x
 * [Django](http://www.djangoproject.com)
