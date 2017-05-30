@@ -1,13 +1,5 @@
 # Features (service)
 
-* Features is a BDD collaboration tool bringing technical and non-technical people together to work on Scenarios.
-
-## Features... so meta
-
-* Auto import of feature files from Git (SSH or https)
-* View feature files with auto Gherkin colour highlighting
-* Multiple project support per user
-
 ## Technologies
 * Python 3.x
 * [Django](http://www.djangoproject.com)
