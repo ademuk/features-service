@@ -1,12 +1,13 @@
 # Features (service)
 
-* See the [Features client](https://github.com/ademuk/features) for more info.
-* Created by [Adem Gaygusuz](https://adem.io).
+* See the [Features client](https://github.com/ademuk/features) for more info
+* Created by [Adem Gaygusuz](https://adem.io)
 
 ## Technologies
 * Python 3.x
 * [Django](http://www.djangoproject.com)
 * [Django REST Framework](http://www.django-rest-framework.org/)
+* [Django Channels](https://channels.readthedocs.io/en/stable/)
 * [Celery](http://www.celeryproject.org/) & [Redis](https://redis.io/)
 * [Postgresql](http://www.postgresql.com/)
 
@@ -53,3 +54,15 @@ CORS_ORIGIN_WHITELIST=<client_hostname>:<client_port> # i.e. features.appyharry.
 $ pip install honcho
 $ honcho start
 ```
+
+
+## Author
+
+* Created by [Adem Gaygusuz](https://adem.io)
+* Email address: <adem@ardweb.co.uk>
+* [@ademuk](https://www.twitter.com/ademuk) on Twitter
+
+## License
+
+Features is licensed under the MIT License. (See LICENSE)
+
